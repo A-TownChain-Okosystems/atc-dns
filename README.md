@@ -1,27 +1,41 @@
-# atc-dns
+# ATC-DNS — Decentralized DNS
 
-Dezentraler DNS-Resolver für A-TownChain P2P-Netzwerk.
+Dezentrales DNS-System für A-TownChain OS — Domain-Namen auf der Chain.
 
-## Features (geplant)
-- DID-basierte Namensauflösung (DID → IP:Port)
-- DNS-Caching mit TTL
-- Record-Typen: A, AAAA, CNAME, TXT, MX, SRV
-- P2P-Propagation über Gossip-Protokoll
-- Integration mit atc-shivacore/tcpip.rs
-- DNS-Over-HTTPS (DoH) Support
-- Anti-Spoofing (Ed25519 Signaturen)
+## Features
+- **On-Chain DNS** — Domain-Registrierung als Smart Contract
+- **Name Resolution** — `atc://myapp.a-town` → ATC-Adresse
+- **TLD Management** — `.atc`, `.town`, `.kai` (On-Chain Governance)
+- **DNSSEC** — Kryptographische Validierung
+- **Caching** — Lokaler Resolver-Cache mit TTL
 
-## Build
-```bash
-cargo build --target x86_64-unknown-none
+## Architektur
+```
+┌─────────────┐     ┌──────────────┐     ┌─────────────┐
+│ Application  │────→│ ATC-DNS      │────→│ Chain Query │
+│             │     │ Resolver     │     │ (Smart      │
+│ getaddrinfo │←────│ Cache+TTL   │←────│  Contract)  │
+└─────────────┘     └──────────────┘     └─────────────┘
 ```
 
-## Abhängigkeiten
-- [atc-shivacore](https://github.com/A-TownChain-Okosystems/atc-shivacore) — TCP/IP-Stack, DID
+## Name-Registrierung
+```atclang
+contract DomainRegistry {
+    fn register(name: String, owner: Address) -> bool {
+        require(!exists(name), "domain already registered");
+        domains[name] = owner;
+        emit DomainRegistered(name, owner);
+        true
+    }
+    
+    fn resolve(name: String) -> Address {
+        domains[name]
+    }
+}
+```
 
-## Status
-- Initial: Repo erstellt 05.08.2026
-- Sprache: Rust (no_std, Kernel-Modul)
+## Verwandte Repos
+- [atcnet](https://github.com/A-TownChain-Okosystems/atcnet) — Netzwerk-Stack
+- [atc-contracts](https://github.com/A-TownChain-Okosystems/atc-contracts) — Smart Contracts
 
----
-Copyright © Michael Wroblewski / A-TownChain-Okosystems. All Rights Reserved.
+[agent: aurora-base44-superagent-6a2756186106d6f0fbb105b5]

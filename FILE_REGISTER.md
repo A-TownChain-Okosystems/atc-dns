@@ -1,13 +1,32 @@
 # 📋 File Register — atc-dns
 
-> **Zweck:** Vollständige Liste aller existierenden Dateien.
-> **Auto-generiert:** 2026-08-05 · **Dateien:** 6
+> **Auto-generiert:** 2026-08-06 | **Agent:** Aurora (MasterBrain · Base44)
 
-| Datei | Zeilen | Typ |
-|------|--------|-----|
-| `./.gitignore` | 13 | gitignore |
-| `./CHANGELOG.md` | 8 | md |
-| `./LICENSE` | 15 | /LICENSE |
-| `./README.md` | 107 | md |
-| `./ROADMAP.md` | 16 | md |
-| `./STATUS.md` | 21 | md |
+## Zusammenfassung
+
+| Metrik | Wert |
+|--------|------|
+| Dateien | 14 |
+| Zeilen | 427 |
+
+## Dateiliste
+
+| Datei | Zeilen |
+|------|--------|
+| `.gitignore` | 13 |
+| `ARCHITECTURE.md` | 69 |
+| `CHANGELOG.md` | 8 |
+| `COMPONENT_PLAN.md` | 133 |
+| `FILE_REGISTER.md` | 13 |
+| `LICENSE` | 15 |
+| `README.md` | 107 |
+| `ROADMAP.md` | 16 |
+| `STATUS.md` | 21 |
+| `cache.atc` | 12 |
+| `dnssec.atc` | 12 |
+| `records.atc` | 12 |
+| `resolver.atc` | 12 |
+| `zones.atc` | 12 |
+
+---
+*Auto-generiert 2026-08-06 · Aurora*

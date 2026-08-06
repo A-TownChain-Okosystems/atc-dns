@@ -1,69 +1,29 @@
-# 🌳 Architektur — atc-dns
+# ARCHITECTURE.md — atc-dns
 
-> **Stand:** 2026-08-06 | **Version:** v1.0.0
-> **Teil von:** [A-TownChain Ökosystem](https://github.com/A-TownChain-Okosystems)
+> Copyright © Michael Wroblewski / A-TownChain-Okosystems. All Rights Reserved.
 
-## Beschreibung
-
-Dezentrales DNS für A-TownChain Nodes. On-chain Domain-Resolution, Caching, DNSSEC-Äquivalent.
-
-## Metadaten
-
-| Metrik | Wert |
-|--------|------|
-| Layer | L5 — Networking |
-| Sprint | 2.2 |
-| ATC-Standards | ATC-01 |
-| Status | 🟠 Aufbau |
-| Code-Repo | [atc-dns](https://github.com/A-TownChain-Okosystems/atc-dns) |
-| Wiki-Repo | [atc-dns-wiki](https://github.com/A-TownChain-Okosystems/atc-dns-wiki) |
-
-## Komponenten-Übersicht
-
-| Komponente | Beschreibung | Status |
-|-----------|-------------|--------|
-| `resolver.atc` | DNS-Resolver: query, recursive lookup, caching, TTL | 📋 GEPLANT |
-| `records.atc` | DNS-Records: A, AAAA, CNAME, MX, TXT, ATC-specific (CHAIN, NODE) | 📋 GEPLANT |
-| `cache.atc` | Cache-Manager: LRU cache, TTL expiry, prefetch, negative caching | 📋 GEPLANT |
-| `zones.atc` | Zone-Verwaltung: zone files, transfers, signing | 📋 GEPLANT |
-| `dnssec.atc` | Chain-based DNSSEC: cryptographic proof, trust anchors | 📋 GEPLANT |
-
-## Architektur-Baum
-
-```
+## File Tree
+```tree
 atc-dns/
-├── README.md
-├── LICENSE
-├── .gitignore
-├── STATUS.md
-├── ROADMAP.md
-├── CHANGELOG.md
-├── ARCHITECTURE.md
-├── FILE_REGISTER.md
-├── resolver.atc
-├── records.atc
-├── cache.atc
-├── zones.atc
-├── dnssec.atc
+├── Cargo.toml — Decentralized DNS resolution library manifest
+├── .gitignore — Git ignore configuration
+└── src/
+    ├── lib.rs — Crate entry point and DNS resolution facade
+    ├── resolver.rs — High-speed decentralized name resolution algorithm for .atc domains
+    ├── cache.rs — In-memory TTL-based DNS record cache manager
+    ├── records.rs — DNS record structures (A, AAAA, TXT, DID, ATC-URI) and serialization
+    └── propagation.rs — Peer-to-peer record propagation and consensus synchronization
 ```
 
-## Abhängigkeiten
+## Module Descriptions
+- src/lib.rs — Top-level API for performing domain lookups and record registration.
+- src/resolver.rs — Resolves `.atc` human-readable domain names into cryptographic public keys and network addresses.
+- src/cache.rs — High-performance concurrent cache with TTL expiration handling.
+- src/records.rs — Serializable definitions of record types used across A-TownChain network.
+- src/propagation.rs — P2P gossip propagation engine broadcasting DNS updates across network peers.
 
-- **ATCLang Stdlib** (atc-stdlib)
-- **ATC VM** (atc-vm)
-- **ATC Kernel** (atc-kernel)
-- **ATCNet** (atcnet)
+## Build System
+- Cargo.toml — `#![no_std]` Rust library usable in standalone daemons or kernel services.
 
-## Roadmap
-
-| Phase | Aufgabe | Status |
-|-------|---------|--------|
-| Sprint 2.2 | Komponenten-Definition | ✅ ERLEDIGT |
-| Sprint 2.2 | Architektur-Baum | ✅ ERLEDIGT |
-| Sprint 2.2 | Stub-Dateien erstellen | 🔄 IN ARBEIT |
-| Sprint 2.2 | Implementierung | 📋 GEPLANT |
-| Sprint 2.2.1 | Tests | 📋 GEPLANT |
-| Sprint 2.2.2 | Dokumentation | 📋 GEPLANT |
-
----
-*Auto-generiert 2026-08-06 · Aurora (MasterBrain · Base44)*
+## Dependencies
+- serde-no-std — Compact binary serialization for wire-protocol DNS messages.

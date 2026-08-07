@@ -1,133 +1,102 @@
 # 📋 Komponenten-Plan — atc-dns
 
-> **Erstellt:** 2026-08-06 | **Agent:** Aurora (MasterBrain · Base44)
+> **Erstellt:** 2026-08-08 | **Agent:** Aurora (Base44)
+> **Korrigiert:** Datei-Erweiterungen von .atc → Rust (.rs)
 
 ## Übersicht
 
 **Repo:** atc-dns  
-**Name:** ATC DNS — Domain Name System  
-**Beschreibung:** Dezentrales DNS für A-TownChain Nodes. On-chain Domain-Resolution, Caching, DNSSEC-Äquivalent.  
-**Layer:** L5 — Networking  
-**Sprint:** 2.2  
-**ATC-Standards:** ATC-01
+**Name:** ATC DNS  
+**Beschreibung:** Decentralized naming service  
+**Sprache:** Rust (.rs)  
+**Build-System:** Rust (.rs)-Toolchain
 
 ---
 
 ## Komponenten
 
-### 1. resolver.atc
+### 1. `src/lib.rs`
 
-**Beschreibung:** DNS-Resolver: query, recursive lookup, caching, TTL
-
-**Status:** 📋 GEPLANT
-
-**Schnittstellen:**
-- Eingabe: —
-- Ausgabe: —
-- Abhängigkeiten: ATCLang Stdlib
-
-**Akzeptanzkriterien:**
-1. Datei existiert und parst mit ATCLang v0.3 Parser
-2. Alle öffentlichen Funktionen haben Type-Signatures
-3. Modul ist im FILE_REGISTER.md eingetragen
-
----
-
-### 2. records.atc
-
-**Beschreibung:** DNS-Records: A, AAAA, CNAME, MX, TXT, ATC-specific (CHAIN, NODE)
+**Beschreibung:** Crate root
 
 **Status:** 📋 GEPLANT
 
 **Schnittstellen:**
 - Eingabe: —
 - Ausgabe: —
-- Abhängigkeiten: ATCLang Stdlib
+- Abhängigkeiten: ATC Ecosystem
 
 **Akzeptanzkriterien:**
-1. Datei existiert und parst mit ATCLang v0.3 Parser
+1. Datei existiert und kompiliert mit Rust (.rs)
 2. Alle öffentlichen Funktionen haben Type-Signatures
 3. Modul ist im FILE_REGISTER.md eingetragen
 
----
+### 2. `src/resolver.rs`
 
-### 3. cache.atc
-
-**Beschreibung:** Cache-Manager: LRU cache, TTL expiry, prefetch, negative caching
+**Beschreibung:** Name resolution logic
 
 **Status:** 📋 GEPLANT
 
 **Schnittstellen:**
 - Eingabe: —
 - Ausgabe: —
-- Abhängigkeiten: ATCLang Stdlib
+- Abhängigkeiten: ATC Ecosystem
 
 **Akzeptanzkriterien:**
-1. Datei existiert und parst mit ATCLang v0.3 Parser
+1. Datei existiert und kompiliert mit Rust (.rs)
 2. Alle öffentlichen Funktionen haben Type-Signatures
 3. Modul ist im FILE_REGISTER.md eingetragen
 
----
+### 3. `src/registry.rs`
 
-### 4. zones.atc
-
-**Beschreibung:** Zone-Verwaltung: zone files, transfers, signing
+**Beschreibung:** DNS record registry
 
 **Status:** 📋 GEPLANT
 
 **Schnittstellen:**
 - Eingabe: —
 - Ausgabe: —
-- Abhängigkeiten: ATCLang Stdlib
+- Abhängigkeiten: ATC Ecosystem
 
 **Akzeptanzkriterien:**
-1. Datei existiert und parst mit ATCLang v0.3 Parser
+1. Datei existiert und kompiliert mit Rust (.rs)
 2. Alle öffentlichen Funktionen haben Type-Signatures
 3. Modul ist im FILE_REGISTER.md eingetragen
 
----
+### 4. `src/zones.rs`
 
-### 5. dnssec.atc
-
-**Beschreibung:** Chain-based DNSSEC: cryptographic proof, trust anchors
+**Beschreibung:** Zone management
 
 **Status:** 📋 GEPLANT
 
 **Schnittstellen:**
 - Eingabe: —
 - Ausgabe: —
-- Abhängigkeiten: ATCLang Stdlib
+- Abhängigkeiten: ATC Ecosystem
 
 **Akzeptanzkriterien:**
-1. Datei existiert und parst mit ATCLang v0.3 Parser
+1. Datei existiert und kompiliert mit Rust (.rs)
+2. Alle öffentlichen Funktionen haben Type-Signatures
+3. Modul ist im FILE_REGISTER.md eingetragen
+
+### 5. `src/cache.rs`
+
+**Beschreibung:** Resolution cache
+
+**Status:** 📋 GEPLANT
+
+**Schnittstellen:**
+- Eingabe: —
+- Ausgabe: —
+- Abhängigkeiten: ATC Ecosystem
+
+**Akzeptanzkriterien:**
+1. Datei existiert und kompiliert mit Rust (.rs)
 2. Alle öffentlichen Funktionen haben Type-Signatures
 3. Modul ist im FILE_REGISTER.md eingetragen
 
 ---
 
-## Implementierungs-Reihenfolge
+## Hinweis
 
-1. `resolver.atc` — DNS-Resolver
-2. `records.atc` — DNS-Records
-3. `cache.atc` — Cache-Manager
-4. `zones.atc` — Zone-Verwaltung
-5. `dnssec.atc` — Chain-based DNSSEC
-
-## Test-Strategie
-
-1. Parse-Test: Jede .atc Datei muss mit ATCLang v0.3 Parser parsen
-2. Unit-Tests: Mindestens 3 Tests pro Komponente
-3. Integration-Test: Komponenten interagieren korrekt
-4. Coverage-Ziel: >80%
-
-## Dokumentations-Requirements
-
-- ARCHITECTURE.md: Architektur-Baum + Komponenten-Übersicht ✅
-- COMPONENT_PLAN.md: Dieser Plan ✅
-- FILE_REGISTER.md: Datei-Liste ✅
-- STATUS.md: Aktueller Status ✅
-- ROADMAP.md: Sprint-Zuordnung ✅
-- CHANGELOG.md: Änderungs-Historie ✅
-
----
-*Auto-generiert 2026-08-06 · Aurora (MasterBrain · Base44)*
+Dieser Komponenten-Plan wurde korrigiert: Die ursprünglichen .atc-Dateinamen wurden durch Rust (.rs)-Dateinamen ersetzt, um die tatsächliche Repository-Sprache widerzuspiegeln.

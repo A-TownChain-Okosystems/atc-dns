@@ -1,11 +1,10 @@
-//! Dezentraler DNS-Resolver — DID-basierte Namensauflösung
-//!
-//! Part of the A-TownChain-Okosystems ecosystem.
-//! Copyright (c) Michael Wroblewski. All Rights Reserved.
-
-#![no_std]
-
+// atc-dns — Decentralized naming service
 pub mod resolver;
+pub mod registry;
+pub mod zones;
 pub mod cache;
-pub mod records;
-pub mod propagation;
+
+pub use resolver::DnsResolver;
+pub use registry::DnsRegistry;
+pub use zones::ZoneManager;
+pub use cache::DnsCache;
